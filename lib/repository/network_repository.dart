@@ -5,8 +5,8 @@ import 'package:residencial/domain/models/parking.dart';
 import 'package:residencial/settings.dart';
 
 class NetworkRepository {
-  Future<List<Parking>> getAllParking(int idCliente) async {
-    var url = Uri.https(urlBase, "/parking/$idCliente");
+  Future<List<Parking>> getAllParking() async {
+    var url = Uri.https(urlBase, "/parking/");
     var response = await http.get(url);
 
     Iterable bodyJson = convert.json.decode(response.body)['items'];
