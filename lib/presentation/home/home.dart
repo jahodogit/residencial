@@ -1,26 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:residencial/domain/models/parking.dart';
+import 'package:provider/provider.dart';
+
+import 'package:residencial/presentation/providers/parking_provider.dart';
 import 'package:residencial/presentation/widgets/parking_lot.dart';
 
 class HomePage extends StatelessWidget {
-  final List<Parking> lots = [
-    Parking(numero: "12", apto: "904 TORRE 3", placa: "MSY162"),
-    Parking(
-        numero: "112", apto: "901 TORRE 4", placa: "PHU10B", disponible: false),
-    Parking(
-        numero: "34",
-        apto: "502 TORRE 2",
-        placa: "ABC100",
-        moto: true,
-        placamoto: "HDS40C"),
-    Parking(numero: "82", apto: "303 TORRE 3", placa: "DEF100"),
-    Parking(
-        numero: "44", apto: "701 TORRE 5", placa: "AVV100", disponible: false),
-    Parking(numero: "123", apto: "503 TORRE 2", placa: "KJH100"),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    ParkingProvider parkingProvider = Provider.of<ParkingProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("Parqueaderos"),
@@ -29,9 +16,9 @@ class HomePage extends StatelessWidget {
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
           ),
-          itemCount: lots.length,
+          itemCount: parkingProvider.lots.length,
           itemBuilder: (BuildContext context, index) {
-            return ParkingLot(parking: lots[index]);
+            return ParkingLot(parking: parkingProvider.lots[index]);
           }),
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
