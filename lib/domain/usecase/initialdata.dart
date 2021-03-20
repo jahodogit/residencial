@@ -12,7 +12,7 @@ class GetInitialDataUseCase {
 
     await _localRepository.openBox();
 
-    if (!_localRepository.ready()) {
+    if (_localRepository.ready()) {
       var lots = await _networkRepository.getAllParking();
       await _localRepository.putDataParking(lots);
     }

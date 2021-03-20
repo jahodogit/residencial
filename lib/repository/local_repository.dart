@@ -10,7 +10,7 @@ class LocalRepository {
   }
 
   openBox() async {
-    parkingBox = await Hive.openBox('parking');
+    parkingBox = await Hive.openBox<Parking>('parking');
   }
 
   bool ready() {

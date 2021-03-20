@@ -8,23 +8,23 @@ class Parking extends HiveObject {
   @HiveField(1)
   final String apto;
   @HiveField(2)
-  final bool disponible;
+  final int disponible;
   @HiveField(3)
   final String placa;
   @HiveField(4)
-  final bool moto;
+  final int moto;
   @HiveField(5)
-  final bool vehiculo;
+  final int vehiculo;
   @HiveField(6)
   final String placamoto;
 
   Parking(
       {this.numero,
       this.apto,
-      this.disponible = true,
+      this.disponible,
       this.placa,
-      this.moto = false,
-      this.vehiculo = true,
+      this.moto,
+      this.vehiculo,
       this.placamoto = ""});
 
   factory Parking.fromJson(Map<String, dynamic> json) {

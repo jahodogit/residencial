@@ -6,18 +6,15 @@ import 'package:residencial/settings.dart';
 
 class NetworkRepository {
   Future<List<Parking>> getAllParking() async {
-    var url = Uri.https(urlBase, "test/residencial/parking/");
+    var url = Uri.parse("$urlBase/test/residencial/parking/");
     var response = await http.get(url);
 
-    Iterable bodyJson = convert.json.decode(response.body);
+    Iterable bodyJson = convert.json.decode(response.body)["items"];
 
     if (response.statusCode == 200) {
-      return bodyJson.map((itemRecibido) {
-        itemRecibido.moto = intToBool(itemRecibido.moto);
-        itemRecibido.vehiculo = intToBool(itemRecibido.vehiculo);
-        print(itemRecibido);
-        Parking.fromJson(itemRecibido);
-      }).toList();
+      return bodyJson
+          .map((itemRecibido) => Parking.fromJson(itemRecibido))
+          .toList();
     }
   }
 }

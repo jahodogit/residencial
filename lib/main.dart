@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:residencial/domain/models/parking.dart';
 import 'package:residencial/presentation/home/home.dart';
 import 'package:residencial/presentation/providers/parking_provider.dart';
 
-void main() {
-  var path = Directory.current.path;
-  Hive.init(path);
-  Hive.registerAdapter(ParkingAdapter());
+void main() async {
   runApp(MyApp());
+}
+
+Future _initHive(BuildContext context) async {
+  var directory = await getApplicationDocumentsDirectory();
+  Hive.init(directory.path.toString());
+  Hive.registerAdapter(ParkingAdapter());
 }
 
 class MyApp extends StatelessWidget {
@@ -27,7 +31,29 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.orange,
         ),
-        home: HomePage(),
+        home: FutureBuilder(
+          future: _initHive(context),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.error != null) {
+                return Scaffold(
+                  body: Center(child: Text(snapshot.error)),
+                );
+              } else {
+                return HomePage();
+              }
+            } else {
+              return Scaffold(
+                body: Center(
+                  child: Text(
+                    "powered by FSD - FullStackDev",
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              );
+            }
+          },
+        ),
       ),
     );
   }

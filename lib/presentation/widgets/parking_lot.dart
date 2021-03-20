@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:residencial/domain/models/parking.dart';
 
+import '../../settings.dart';
+
 class ParkingLot extends StatelessWidget {
   Parking parking;
   ParkingLot({this.parking});
@@ -12,7 +14,8 @@ class ParkingLot extends StatelessWidget {
         width: 140,
         height: 180,
         child: Card(
-          shadowColor: parking.disponible ? Colors.green : Colors.red,
+          shadowColor:
+              intToBool(parking.disponible) ? Colors.green : Colors.red,
           elevation: 15,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -36,10 +39,12 @@ class ParkingLot extends StatelessWidget {
                 padding: const EdgeInsets.all(15.0),
                 child: Row(
                   children: [
-                    parking.vehiculo
+                    intToBool(parking.vehiculo)
                         ? Icon(Icons.directions_car_outlined)
                         : SizedBox(),
-                    parking.moto ? Icon(Icons.motorcycle) : SizedBox()
+                    intToBool(parking.moto)
+                        ? Icon(Icons.motorcycle)
+                        : SizedBox()
                   ],
                 ),
               )

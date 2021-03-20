@@ -19,10 +19,10 @@ class ParkingAdapter extends TypeAdapter<Parking> {
     return Parking(
       numero: fields[0] as String,
       apto: fields[1] as String,
-      disponible: fields[2] as bool,
+      disponible: fields[2] as int,
       placa: fields[3] as String,
-      moto: fields[4] as bool,
-      vehiculo: fields[5] as bool,
+      moto: fields[4] as int,
+      vehiculo: fields[5] as int,
       placamoto: fields[6] as String,
     );
   }
