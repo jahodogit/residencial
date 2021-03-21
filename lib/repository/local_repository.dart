@@ -16,17 +16,13 @@ class LocalRepository {
     visitasBox = await Hive.openBox<Visita>('visitas');
   }
 
-  bool ready() {
-    return parkingBox.isEmpty;
-  }
+  bool ready() => parkingBox.isEmpty;
 
-  putDataParking(List<Parking> lots) async {
-    await parkingBox.addAll(lots);
-  }
+  putDataParking(List<Parking> lots) async => await parkingBox.addAll(lots);
 
-  List<Parking> getAllParking() {
-    return parkingBox.values.toList();
-  }
+  List<Parking> getAllParking() => parkingBox.values.toList();
+
+  putVisita(Visita visita) async => await visitasBox.add(visita);
 
   LocalRepository._internal();
 }
