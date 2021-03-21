@@ -37,4 +37,14 @@ class Parking extends HiveObject {
         vehiculo: json['vehiculo'],
         placamoto: json['placamoto']);
   }
+
+  Map<String, dynamic> toJson() => {
+        "numero": numero,
+        "apto": apto,
+        "disponible": disponible,
+        "placa": placa,
+        "moto": moto,
+        "vehiculo": vehiculo,
+        "placamoto": placamoto
+      };
 }
