@@ -17,6 +17,8 @@ class Visita extends HiveObject {
   final Parking lot;
   @HiveField(5)
   final String placavehiculo;
+  @HiveField(6)
+  final int sincronizado;
 
   Visita(
       {this.cedula,
@@ -24,13 +26,15 @@ class Visita extends HiveObject {
       this.entrada,
       this.salida,
       this.lot,
-      this.placavehiculo});
+      this.placavehiculo,
+      this.sincronizado});
 
   Map<String, dynamic> toJson() => {
         "cedula": cedula,
         "nombre": nombre,
         "entrada": entrada,
         "salida": salida,
-        "lot": lot
+        "lot": lot,
+        "placavehiculo": placavehiculo
       };
 }

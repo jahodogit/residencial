@@ -24,5 +24,7 @@ class LocalRepository {
 
   Future<int> putVisita(Visita visita) async => await visitasBox.add(visita);
 
+  List<Visita> getVisitas() => visitasBox.values.toList();
+
   LocalRepository._internal();
 }
