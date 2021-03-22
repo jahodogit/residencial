@@ -4,8 +4,8 @@ import 'package:residencial/repository/local_repository.dart';
 class PutVisitaUseCase {
   LocalRepository _localRepository;
 
-  String call(Visita visita) {
+  Future<int> call(Visita visita) async {
     _localRepository = LocalRepository();
-    _localRepository.putVisita(visita);
+    return await _localRepository.putVisita(visita);
   }
 }

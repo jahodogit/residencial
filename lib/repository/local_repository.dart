@@ -22,7 +22,7 @@ class LocalRepository {
 
   List<Parking> getAllParking() => parkingBox.values.toList();
 
-  putVisita(Visita visita) async => await visitasBox.add(visita);
+  Future<int> putVisita(Visita visita) async => await visitasBox.add(visita);
 
   LocalRepository._internal();
 }

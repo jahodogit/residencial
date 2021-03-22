@@ -45,8 +45,10 @@ class HomePage extends StatelessWidget {
             width: 20,
           ),
           FloatingActionButton(
-            onPressed: () {},
-            child: Icon(Icons.add),
+            onPressed: () {
+              Navigator.of(context).pushNamed("/visita");
+            },
+            child: Icon(Icons.person_add),
           ),
         ],
       ),
