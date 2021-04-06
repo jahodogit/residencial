@@ -26,5 +26,13 @@ class LocalRepository {
 
   List<Visita> getVisitas() => visitasBox.values.toList();
 
+  Future<void> updateEstadoParking(Parking parking) async {
+    Parking element = parkingBox.values
+        .where((element) => element.numero == parking.numero)
+        .first;
+    element.disponible = parking.disponible;
+    await element.save();
+  }
+
   LocalRepository._internal();
 }

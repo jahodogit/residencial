@@ -8,7 +8,7 @@ class Parking extends HiveObject {
   @HiveField(1)
   final String apto;
   @HiveField(2)
-  final int disponible;
+  int disponible;
   @HiveField(3)
   final String placa;
   @HiveField(4)
