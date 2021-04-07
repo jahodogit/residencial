@@ -17,7 +17,7 @@ class VisitaAdapter extends TypeAdapter<Visita> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Visita(
-      cedula: fields[0] as int,
+      cedula: fields[0] as String,
       nombre: fields[1] as String,
       entrada: fields[2] as String,
       salida: fields[3] as String,

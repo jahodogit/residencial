@@ -1,11 +1,17 @@
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:residencial/domain/models/visita.dart';
+import 'package:residencial/presentation/providers/parking_provider.dart';
 
 class VisitaPage extends StatelessWidget {
-  const VisitaPage({Key key}) : super(key: key);
+  Visita visita = Visita();
+  String fecha =
+      formatDate(DateTime.now(), [dd, '/', mm, '/', yy, ' ', HH, ':', nn]);
 
   @override
   Widget build(BuildContext context) {
+    ParkingProvider parkingProvider = Provider.of<ParkingProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("Ingreso visitante"),
@@ -17,22 +23,31 @@ class VisitaPage extends StatelessWidget {
           children: [
             TextField(
               decoration: InputDecoration(labelText: "CEDULA"),
+              onChanged: (value) => visita.cedula = value,
             ),
             TextField(
               decoration: InputDecoration(labelText: "NOMBRE COMPLETO"),
+              onChanged: (value) => visita.nombre = value,
             ),
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               Text("FECHA DE ENTRADA"),
-              Text(formatDate(
-                  DateTime.now(), [dd, '/', mm, '/', yy, ' ', HH, ':', nn])),
+              Text(fecha),
             ]),
             TextField(
               decoration: InputDecoration(labelText: "PARQUEADERO ASIGNADO"),
+              onChanged: (value) {},
             ),
             TextField(
               decoration: InputDecoration(labelText: "PLACA"),
+              onChanged: (value) => visita.placavehiculo = value,
             ),
-            ElevatedButton(onPressed: () {}, child: Text("GUARDAR"))
+            ElevatedButton(
+                onPressed: () {
+                  visita.entrada = fecha;
+                  parkingProvider.putVisita(visita);
+                  Navigator.of(context).pop();
+                },
+                child: Text("GUARDAR"))
           ],
         ),
       ),

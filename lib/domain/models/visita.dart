@@ -6,19 +6,19 @@ part 'visita.g.dart';
 @HiveType(typeId: 2)
 class Visita extends HiveObject {
   @HiveField(0)
-  final int cedula;
+  String cedula;
   @HiveField(1)
-  final String nombre;
+  String nombre;
   @HiveField(2)
-  final String entrada;
+  String entrada;
   @HiveField(3)
-  final String salida;
+  String salida;
   @HiveField(4)
-  final Parking lot;
+  Parking lot;
   @HiveField(5)
-  final String placavehiculo;
+  String placavehiculo;
   @HiveField(6)
-  final int sincronizado;
+  int sincronizado;
 
   Visita(
       {this.cedula,
@@ -27,7 +27,7 @@ class Visita extends HiveObject {
       this.salida,
       this.lot,
       this.placavehiculo,
-      this.sincronizado});
+      this.sincronizado = 0});
 
   Map<String, dynamic> toJson() => {
         "cedula": cedula,

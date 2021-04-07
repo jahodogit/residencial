@@ -30,9 +30,11 @@ class ParkingProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  putVisita() {
+  putVisita(Visita visita) async {
     putVisitaUseCase = PutVisitaUseCase();
-    notifyListeners();
+    await putVisitaUseCase(visita);
+
+    getVisitas();
   }
 
   getVisitas() {

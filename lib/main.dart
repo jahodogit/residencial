@@ -4,6 +4,7 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:residencial/domain/models/parking.dart';
+import 'package:residencial/domain/models/visita.dart';
 import 'package:residencial/presentation/home/home.dart';
 import 'package:residencial/presentation/providers/parking_provider.dart';
 import 'package:residencial/routes.dart';
@@ -16,6 +17,7 @@ Future _initHive(BuildContext context) async {
   var directory = await getApplicationDocumentsDirectory();
   Hive.init(directory.path.toString());
   Hive.registerAdapter(ParkingAdapter());
+  Hive.registerAdapter(VisitaAdapter());
 }
 
 class MyApp extends StatelessWidget {
