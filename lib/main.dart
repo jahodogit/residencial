@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        darkTheme: ThemeData.dark(),
         title: 'Parking',
         theme: ThemeData(
           primarySwatch: Colors.orange,

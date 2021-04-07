@@ -23,9 +23,12 @@ class ParkingLot extends StatelessWidget {
           width: 140,
           height: 180,
           child: Card(
-            color: intToBool(parking.disponible) ? Colors.green : Colors.red,
-            shadowColor:
-                intToBool(parking.disponible) ? Colors.green : Colors.red,
+            color: intToBool(parking.disponible)
+                ? Colors.green[300]
+                : Colors.red[400],
+            shadowColor: intToBool(parking.disponible)
+                ? Colors.green[300]
+                : Colors.red[400],
             elevation: 15,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

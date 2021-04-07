@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:residencial/presentation/providers/parking_provider.dart';
 import 'package:residencial/presentation/widgets/parking_lot.dart';
+import 'package:residencial/styles.dart';
 
 class HomePage extends StatelessWidget {
   String placa;
@@ -19,46 +20,32 @@ class HomePage extends StatelessWidget {
               onPressed: () => parkingProvider.resetParkingSearch())
         ],
       ),
-      body: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-          ),
-          itemCount: parkingProvider.lots.length,
-          itemBuilder: (BuildContext context, index) {
-            return ParkingLot(parking: parkingProvider.lots[index]);
-          }),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            TextField(
+              decoration: kInputDecoration,
+              onChanged: (value) => parkingProvider.searchPlaca(value),
+            ),
+            Expanded(
+              child: parkingProvider.lots.isNotEmpty
+                  ? GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                      ),
+                      itemCount: parkingProvider.lots.length,
+                      itemBuilder: (BuildContext context, index) {
+                        return ParkingLot(parking: parkingProvider.lots[index]);
+                      })
+                  : Center(child: CircularProgressIndicator()),
+            ),
+          ],
+        ),
+      ),
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          FloatingActionButton(
-            onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      content: TextField(onChanged: (value) => placa = value),
-                      actions: [
-                        TextButton(
-                            onPressed: () {
-                              parkingProvider.resetParkingSearch();
-                              Navigator.of(context).pop();
-                            },
-                            child: Text("CANCELAR")),
-                        TextButton(
-                            onPressed: () {
-                              parkingProvider.searchPlaca(placa);
-                              Navigator.of(context).pop();
-                            },
-                            child: Text("BUSCAR")),
-                      ],
-                    );
-                  });
-            },
-            child: Icon(Icons.search),
-          ),
-          SizedBox(
-            width: 20,
-          ),
           FloatingActionButton(
             onPressed: () {
               Navigator.of(context).pushNamed("/visita");
