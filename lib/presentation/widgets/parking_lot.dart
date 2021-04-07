@@ -15,9 +15,9 @@ class ParkingLot extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
         onDoubleTap: () {
+          //SE ACTUALIZA EL ESTADO DEL PARQUEADERO
           parking.disponible = parking.disponible == 0 ? 1 : 0;
           parkingProvider.updateParkingState(parking);
-          print(parking.disponible);
         },
         child: Container(
           width: 140,
@@ -32,11 +32,17 @@ class ParkingLot extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  parking.apto,
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                ),
                 Text(
                   parking.numero,
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                Text(parking.apto),
                 Text(
                   parking.placa,
                   style: TextStyle(fontSize: 20),

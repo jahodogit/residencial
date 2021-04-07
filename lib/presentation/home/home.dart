@@ -5,12 +5,19 @@ import 'package:residencial/presentation/providers/parking_provider.dart';
 import 'package:residencial/presentation/widgets/parking_lot.dart';
 
 class HomePage extends StatelessWidget {
+  String placa;
+
   @override
   Widget build(BuildContext context) {
     ParkingProvider parkingProvider = Provider.of<ParkingProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("Parqueaderos"),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.refresh_rounded),
+              onPressed: () => parkingProvider.resetParkingSearch())
+        ],
       ),
       body: GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -29,12 +36,20 @@ class HomePage extends StatelessWidget {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      content: TextField(),
+                      content: TextField(onChanged: (value) => placa = value),
                       actions: [
                         TextButton(
-                            onPressed: () => Navigator.of(context).pop(),
+                            onPressed: () {
+                              parkingProvider.resetParkingSearch();
+                              Navigator.of(context).pop();
+                            },
                             child: Text("CANCELAR")),
-                        TextButton(onPressed: () {}, child: Text("BUSCAR")),
+                        TextButton(
+                            onPressed: () {
+                              parkingProvider.searchPlaca(placa);
+                              Navigator.of(context).pop();
+                            },
+                            child: Text("BUSCAR")),
                       ],
                     );
                   });
