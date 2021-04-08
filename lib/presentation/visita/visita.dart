@@ -1,10 +1,14 @@
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:residencial/domain/models/parking.dart';
 import 'package:residencial/domain/models/visita.dart';
 import 'package:residencial/presentation/providers/parking_provider.dart';
 
 class VisitaPage extends StatelessWidget {
+  VisitaPage({this.parking});
+
+  Parking parking;
   Visita visita = Visita();
   String fecha =
       formatDate(DateTime.now(), [dd, '/', mm, '/', yy, ' ', HH, ':', nn]);
@@ -33,16 +37,14 @@ class VisitaPage extends StatelessWidget {
               Text("FECHA DE ENTRADA"),
               Text(fecha),
             ]),
-            TextField(
-              decoration: InputDecoration(labelText: "APARTAMENTO"),
-              onChanged: (value) {},
-            ),
+            Text("Apartamento: ${parking.apto}"),
             TextField(
               decoration: InputDecoration(labelText: "PLACA"),
               onChanged: (value) => visita.placavehiculo = value,
             ),
             ElevatedButton(
                 onPressed: () {
+                  visita.lot = parking;
                   visita.entrada = fecha;
                   parkingProvider.putVisita(visita);
                   Navigator.of(context).pop();

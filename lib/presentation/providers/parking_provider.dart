@@ -7,17 +7,20 @@ import 'package:residencial/domain/usecase/get_visitas.dart';
 import 'package:residencial/domain/usecase/initialdata.dart';
 import 'package:residencial/domain/usecase/put_visita.dart';
 import 'package:residencial/domain/usecase/update_parking_state.dart';
+import 'package:residencial/domain/usecase/update_salida_visita.dart';
 
 class ParkingProvider extends ChangeNotifier {
   List<Parking> lots = [];
-  List<Parking> dummy = [];
+  List<Parking> dummyLots = [];
   List<Visita> visitas = [];
+  List<Visita> dummyVisitas = [];
 
   GetInitialDataUseCase getInitialDataUseCase;
   PutVisitaUseCase putVisitaUseCase;
   GetVisitasUseCase getVisitasUseCase;
   UpdateParkingStateUseCase updateParkingStateUseCase;
   GetParkingUseCase getParkingUseCase;
+  UpdateSalidaVisitaUseCase updateSalidaVisitaUseCase;
 
   ParkingProvider() {
     getParkingInitialData();
@@ -41,6 +44,7 @@ class ParkingProvider extends ChangeNotifier {
   getVisitas() {
     getVisitasUseCase = GetVisitasUseCase();
     visitas = getVisitasUseCase();
+    dummyVisitas = getVisitasUseCase();
     notifyListeners();
   }
 
@@ -52,14 +56,35 @@ class ParkingProvider extends ChangeNotifier {
 
   searchPlaca(String placa) {
     placa = placa.toUpperCase();
-    lots = dummy.where((element) => element.placa.contains(placa)).toList();
+    lots = dummyLots.where((element) => element.placa.contains(placa)).toList();
     notifyListeners();
   }
 
   resetParkingSearch() {
     getParkingUseCase = GetParkingUseCase();
     lots = getParkingUseCase();
-    dummy = getParkingUseCase();
+    dummyLots = getParkingUseCase();
+    notifyListeners();
+  }
+
+  searchVisita(String texto) {
+    texto = texto.toUpperCase();
+    visitas = dummyVisitas
+        .where((element) => element.cedula.contains(texto))
+        .toList();
+    notifyListeners();
+  }
+
+  resetVisitaSearch() {
+    getVisitasUseCase = GetVisitasUseCase();
+    visitas = getVisitasUseCase();
+    dummyVisitas = getVisitasUseCase();
+    notifyListeners();
+  }
+
+  updateSalidaVisita(Visita visita) async {
+    updateSalidaVisitaUseCase = UpdateSalidaVisitaUseCase();
+    await updateSalidaVisitaUseCase(visita);
     notifyListeners();
   }
 }

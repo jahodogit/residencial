@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:residencial/domain/models/parking.dart';
 import 'package:residencial/presentation/providers/parking_provider.dart';
+import 'package:residencial/presentation/visita/visita.dart';
 
 import '../../settings.dart';
 
@@ -19,7 +20,10 @@ class ParkingLot extends StatelessWidget {
           parking.disponible = parking.disponible == 0 ? 1 : 0;
           parkingProvider.updateParkingState(parking);
         },
-        onLongPress: () => Navigator.of(context).pushNamed("/visita"),
+        onLongPress: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => VisitaPage(parking: parking))),
         child: Container(
           width: 140,
           height: 180,

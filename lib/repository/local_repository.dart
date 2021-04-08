@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import 'package:date_format/date_format.dart';
 import 'package:residencial/domain/models/parking.dart';
 import 'package:residencial/domain/models/visita.dart';
 
@@ -31,6 +32,16 @@ class LocalRepository {
         .where((element) => element.numero == parking.numero)
         .first;
     element.disponible = parking.disponible;
+    await element.save();
+  }
+
+  Future<void> updateSalidaVisita(Visita visita) async {
+    Visita element = visitasBox.values
+        .where((element) => element.cedula == visita.cedula)
+        .first;
+    element.salida =
+        formatDate(DateTime.now(), [dd, '/', mm, '/', yy, ' ', HH, ':', nn]);
+
     await element.save();
   }
 

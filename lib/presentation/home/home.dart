@@ -17,7 +17,8 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
               icon: Icon(Icons.refresh_rounded),
-              onPressed: () => parkingProvider.resetParkingSearch())
+              onPressed: () => parkingProvider.resetParkingSearch()),
+          Image.asset("images/naranja.png")
         ],
       ),
       body: Padding(

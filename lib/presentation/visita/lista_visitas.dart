@@ -19,6 +19,7 @@ class ListaVisitasPage extends StatelessWidget {
           children: [
             TextField(
               decoration: kInputDecoration,
+              onChanged: (value) => parkingProvider.searchVisita(value),
             ),
             Expanded(
               child: parkingProvider.visitas.isNotEmpty
@@ -59,11 +60,11 @@ class ListaVisitasPage extends StatelessWidget {
                                         style: TextStyle(fontSize: 15),
                                       ),
                                       Text(
-                                        "Salida: ${item?.salida}",
+                                        "Salida: ${item.salida}",
                                         style: TextStyle(fontSize: 15),
                                       ),
                                       Text(
-                                        "Apto: apto",
+                                        "Apto: ${item.lot.apto}",
                                         style: TextStyle(fontSize: 20),
                                       ),
                                       Text(
@@ -73,11 +74,19 @@ class ListaVisitasPage extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                Container(
-                                  height: 140,
-                                  width: 40,
-                                  color: Colors.red,
-                                  child: Icon(Icons.exit_to_app),
+                                GestureDetector(
+                                  onDoubleTap: () =>
+                                      parkingProvider.updateSalidaVisita(item),
+                                  child: Container(
+                                    height: 140,
+                                    width: 40,
+                                    color: item.salida == "Sin salida"
+                                        ? Colors.red
+                                        : Colors.green[400],
+                                    child: Icon(item.salida == "Sin salida"
+                                        ? Icons.exit_to_app
+                                        : Icons.check),
+                                  ),
                                 )
                               ],
                             ),
@@ -90,12 +99,6 @@ class ListaVisitasPage extends StatelessWidget {
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.of(context).pushNamed("/visita");
-        },
       ),
     );
   }
