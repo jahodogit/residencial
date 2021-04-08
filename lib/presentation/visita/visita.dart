@@ -34,7 +34,7 @@ class VisitaPage extends StatelessWidget {
               Text(fecha),
             ]),
             TextField(
-              decoration: InputDecoration(labelText: "PARQUEADERO ASIGNADO"),
+              decoration: InputDecoration(labelText: "APARTAMENTO"),
               onChanged: (value) {},
             ),
             TextField(

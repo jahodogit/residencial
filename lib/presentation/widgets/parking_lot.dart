@@ -19,6 +19,7 @@ class ParkingLot extends StatelessWidget {
           parking.disponible = parking.disponible == 0 ? 1 : 0;
           parkingProvider.updateParkingState(parking);
         },
+        onLongPress: () => Navigator.of(context).pushNamed("/visita"),
         child: Container(
           width: 140,
           height: 180,

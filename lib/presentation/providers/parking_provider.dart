@@ -26,6 +26,7 @@ class ParkingProvider extends ChangeNotifier {
   getParkingInitialData() async {
     getInitialDataUseCase = GetInitialDataUseCase();
     lots = await getInitialDataUseCase();
+    getVisitas();
     resetParkingSearch();
     notifyListeners();
   }

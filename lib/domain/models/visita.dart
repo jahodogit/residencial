@@ -24,7 +24,7 @@ class Visita extends HiveObject {
       {this.cedula,
       this.nombre,
       this.entrada,
-      this.salida,
+      this.salida = "Sin salida",
       this.lot,
       this.placavehiculo,
       this.sincronizado = 0});
