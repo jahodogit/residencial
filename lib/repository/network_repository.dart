@@ -7,7 +7,7 @@ import 'package:residencial/settings.dart';
 
 class NetworkRepository {
   Future<List<Parking>> getAllParking() async {
-    var url = Uri.parse("$urlBase/test/residencial/parking/");
+    var url = Uri.parse("$urlBase/residencial/api/parking/");
     var response = await http.get(url);
 
     Iterable bodyJson = convert.json.decode(response.body)["items"];
@@ -20,7 +20,7 @@ class NetworkRepository {
   }
 
   Future<String> postVisita(Visita visita) async {
-    var url = Uri.parse("$urlBase/test/residencial/visita/");
+    var url = Uri.parse("$urlBase/residencial/visita/");
     var response = await http.post(url,
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',

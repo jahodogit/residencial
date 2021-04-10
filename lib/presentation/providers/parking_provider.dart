@@ -56,7 +56,10 @@ class ParkingProvider extends ChangeNotifier {
 
   searchPlaca(String placa) {
     placa = placa.toUpperCase();
-    lots = dummyLots.where((element) => element.placa.contains(placa)).toList();
+    lots = dummyLots.where((element) {
+      var texto = element.placa + element.apto + element.placamoto;
+      return texto.contains(placa);
+    }).toList();
     notifyListeners();
   }
 

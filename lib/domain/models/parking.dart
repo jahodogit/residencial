@@ -25,10 +25,10 @@ class Parking extends HiveObject {
       this.numero,
       this.apto,
       this.disponible,
-      this.placa = "",
+      this.placa,
       this.moto,
       this.vehiculo,
-      this.placamoto = ""});
+      this.placamoto});
 
   factory Parking.fromJson(Map<String, dynamic> json) {
     return Parking(
