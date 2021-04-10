@@ -17,6 +17,7 @@ class ParkingAdapter extends TypeAdapter<Parking> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Parking(
+      id: fields[7] as int,
       numero: fields[0] as String,
       apto: fields[1] as String,
       disponible: fields[2] as int,
@@ -30,7 +31,7 @@ class ParkingAdapter extends TypeAdapter<Parking> {
   @override
   void write(BinaryWriter writer, Parking obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.numero)
       ..writeByte(1)
@@ -44,7 +45,9 @@ class ParkingAdapter extends TypeAdapter<Parking> {
       ..writeByte(5)
       ..write(obj.vehiculo)
       ..writeByte(6)
-      ..write(obj.placamoto);
+      ..write(obj.placamoto)
+      ..writeByte(7)
+      ..write(obj.id);
   }
 
   @override

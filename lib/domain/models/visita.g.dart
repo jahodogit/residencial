@@ -23,13 +23,14 @@ class VisitaAdapter extends TypeAdapter<Visita> {
       salida: fields[3] as String,
       lot: fields[4] as Parking,
       placavehiculo: fields[5] as String,
+      sincronizado: fields[6] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, Visita obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.cedula)
       ..writeByte(1)
@@ -41,7 +42,9 @@ class VisitaAdapter extends TypeAdapter<Visita> {
       ..writeByte(4)
       ..write(obj.lot)
       ..writeByte(5)
-      ..write(obj.placavehiculo);
+      ..write(obj.placavehiculo)
+      ..writeByte(6)
+      ..write(obj.sincronizado);
   }
 
   @override
