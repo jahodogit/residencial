@@ -12,6 +12,11 @@ class ListaVisitasPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Visitantes"),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.flash_on),
+              onPressed: () => parkingProvider.syncVisita())
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

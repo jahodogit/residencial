@@ -6,6 +6,7 @@ import 'package:residencial/domain/usecase/get_visitas.dart';
 
 import 'package:residencial/domain/usecase/initialdata.dart';
 import 'package:residencial/domain/usecase/put_visita.dart';
+import 'package:residencial/domain/usecase/sync_visita.dart';
 import 'package:residencial/domain/usecase/update_parking_state.dart';
 import 'package:residencial/domain/usecase/update_salida_visita.dart';
 
@@ -21,6 +22,7 @@ class ParkingProvider extends ChangeNotifier {
   UpdateParkingStateUseCase updateParkingStateUseCase;
   GetParkingUseCase getParkingUseCase;
   UpdateSalidaVisitaUseCase updateSalidaVisitaUseCase;
+  SyncVisitaUseCase syncVisitaUseCase;
 
   ParkingProvider() {
     getParkingInitialData();
@@ -89,5 +91,10 @@ class ParkingProvider extends ChangeNotifier {
     updateSalidaVisitaUseCase = UpdateSalidaVisitaUseCase();
     await updateSalidaVisitaUseCase(visita);
     notifyListeners();
+  }
+
+  syncVisita() async {
+    syncVisitaUseCase = SyncVisitaUseCase();
+    await syncVisitaUseCase();
   }
 }

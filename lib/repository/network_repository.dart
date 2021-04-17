@@ -19,18 +19,20 @@ class NetworkRepository {
     }
   }
 
-  Future<String> postVisita(Visita visita) async {
-    var url = Uri.parse("$urlBase/residencial/visita/");
+  Future<bool> postVisita(Visita visita) async {
+    var url = Uri.parse("$urlBase/residencial/api/visita/");
     var response = await http.post(url,
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: convert.jsonEncode(visita));
 
+    print(convert.jsonEncode(visita));
     if (response.statusCode == 200) {
-      return "API OK - status 200";
+      return true;
     } else {
-      return "API ERROR";
+      print(response.statusCode);
+      return false;
     }
   }
 }
