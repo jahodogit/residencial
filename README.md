@@ -6,3 +6,5 @@ Permite el control de acceso a los parqueaderos identificando el propietario y l
 -  Busqueda de vehiculos autorizados
 -  Doble click para cambiar el estado del parquederos
 -  Registro de visitantes
+-  Doble click para registrar salida de visitante
+
