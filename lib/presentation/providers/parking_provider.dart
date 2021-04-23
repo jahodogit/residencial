@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:residencial/domain/exceptions/api_exception.dart';
 import 'package:residencial/domain/models/parking.dart';
 import 'package:residencial/domain/models/visita.dart';
 import 'package:residencial/domain/usecase/get_parking.dart';
@@ -10,7 +11,11 @@ import 'package:residencial/domain/usecase/sync_visita.dart';
 import 'package:residencial/domain/usecase/update_parking_state.dart';
 import 'package:residencial/domain/usecase/update_salida_visita.dart';
 
+enum ApiState { INITIAL, LOADING, LOADED, EMPTY, ERROR }
+
 class ParkingProvider extends ChangeNotifier {
+  ApiState apiState = ApiState.INITIAL;
+  ApiException apiException;
   List<Parking> lots = [];
   List<Parking> dummyLots = [];
   List<Visita> visitas = [];
@@ -28,12 +33,24 @@ class ParkingProvider extends ChangeNotifier {
     getParkingInitialData();
   }
 
+  changeApiState(ApiState valor) {
+    apiState = valor;
+    notifyListeners();
+  }
+
   getParkingInitialData() async {
+    changeApiState(ApiState.LOADING);
     getInitialDataUseCase = GetInitialDataUseCase();
-    lots = await getInitialDataUseCase();
+    try {
+      lots = await getInitialDataUseCase();
+      changeApiState(ApiState.LOADED);
+    } on ApiException catch (error) {
+      apiException = error;
+      changeApiState(ApiState.ERROR);
+    }
+
     getVisitas();
     resetParkingSearch();
-    notifyListeners();
   }
 
   putVisita(Visita visita) async {

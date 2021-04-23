@@ -1,10 +1,12 @@
 import 'package:hive/hive.dart';
 import 'package:date_format/date_format.dart';
+import 'package:residencial/domain/exceptions/api_exception.dart';
 import 'package:residencial/domain/models/parking.dart';
 import 'package:residencial/domain/models/visita.dart';
 
 class LocalRepository {
   static final LocalRepository _instance = LocalRepository._internal();
+
   Box parkingBox;
   Box visitasBox;
 
