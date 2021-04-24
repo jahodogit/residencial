@@ -11,13 +11,6 @@ class ProgressIndicatorWithInfo extends StatelessWidget {
       child: Column(
         children: [
           CircularProgressIndicator(),
-          parkingProvider.apiException ??
-              Column(
-                children: [
-                  Text(parkingProvider.apiException.message),
-                  Text(parkingProvider.apiException.code.toString())
-                ],
-              )
         ],
       ),
     );

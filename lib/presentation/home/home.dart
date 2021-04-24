@@ -31,10 +31,11 @@ class HomePage extends StatelessWidget {
               onChanged: (value) => parkingProvider.searchPlaca(value),
             ),
             Expanded(
-              child: parkingProvider.apiState == ApiState.LOADED
-                  ? ParkingList()
-                  : ProgressIndicatorWithInfo(),
-            ),
+                child: parkingProvider.lots.isNotEmpty
+                    ? ParkingList()
+                    : Center(
+                        child: CircularProgressIndicator(),
+                      ))
           ],
         ),
       ),

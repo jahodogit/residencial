@@ -15,8 +15,7 @@ class NetworkRepository {
     var response;
 
     try {
-      final firstResponse = await http.get(url);
-      response = returnResponse(firstResponse);
+      response = await http.get(url);
     } on SocketException {
       throw FetchDataException("Sin conexion a internet");
     }
@@ -34,13 +33,11 @@ class NetworkRepository {
     var url = Uri.parse("$urlBase/residencial/api/visita/");
     var response;
     try {
-      final firstResponse = await http.post(url,
+      final response = await http.post(url,
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
           body: convert.jsonEncode(visita));
-
-      response = returnResponse(firstResponse);
     } on SocketException {
       throw FetchDataException("Sin conexion a internet");
     }
