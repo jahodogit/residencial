@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:residencial/presentation/home/parking_list.dart';
 
 import 'package:residencial/presentation/providers/parking_provider.dart';
-import 'package:residencial/presentation/widgets/parking_lot.dart';
+import 'package:residencial/presentation/widgets/progress_indicator.dart';
 import 'package:residencial/styles.dart';
 
 class HomePage extends StatelessWidget {
@@ -30,16 +31,9 @@ class HomePage extends StatelessWidget {
               onChanged: (value) => parkingProvider.searchPlaca(value),
             ),
             Expanded(
-              child: parkingProvider.lots.isNotEmpty
-                  ? GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                      ),
-                      itemCount: parkingProvider.lots.length,
-                      itemBuilder: (BuildContext context, index) {
-                        return ParkingLot(parking: parkingProvider.lots[index]);
-                      })
-                  : Center(child: CircularProgressIndicator()),
+              child: parkingProvider.apiState == ApiState.LOADED
+                  ? ParkingList()
+                  : ProgressIndicatorWithInfo(),
             ),
           ],
         ),
