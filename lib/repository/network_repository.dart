@@ -33,7 +33,7 @@ class NetworkRepository {
     var url = Uri.parse("$urlBase/residencial/api/visita/");
     var response;
     try {
-      final response = await http.post(url,
+      response = await http.post(url,
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
