@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:residencial/domain/models/parking.dart';
@@ -6,73 +7,87 @@ import 'package:residencial/presentation/visita/visita.dart';
 
 import '../../settings.dart';
 
-class ParkingLot extends StatelessWidget {
+class ParkingLot extends StatefulWidget {
   Parking parking;
   ParkingLot({this.parking});
+
+  @override
+  _ParkingLotState createState() => _ParkingLotState();
+}
+
+class _ParkingLotState extends State<ParkingLot> {
+  AnimationController _controller;
   @override
   Widget build(BuildContext context) {
     ParkingProvider parkingProvider = Provider.of<ParkingProvider>(context);
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: GestureDetector(
-        onDoubleTap: () {
-          //SE ACTUALIZA EL ESTADO DEL PARQUEADERO
-          parking.disponible = parking.disponible == 0 ? 1 : 0;
-          parkingProvider.updateParkingState(parking);
-        },
-        onLongPress: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => VisitaPage(parking: parking))),
-        child: Container(
-          width: 140,
-          height: 180,
-          child: Card(
-            color: intToBool(parking.disponible)
-                ? Colors.green[300]
-                : Colors.red[400],
-            shadowColor: intToBool(parking.disponible)
-                ? Colors.green[300]
-                : Colors.red[400],
-            elevation: 15,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  parking.apto,
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  parking.numero,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  parking.placa,
-                  style: TextStyle(fontSize: 20),
-                ),
-                Text(
-                  parking.placamoto,
-                  style: TextStyle(fontSize: 20),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Row(
-                    children: [
-                      intToBool(parking.vehiculo)
-                          ? Icon(Icons.directions_car_outlined)
-                          : SizedBox(),
-                      intToBool(parking.moto)
-                          ? Icon(Icons.motorcycle)
-                          : SizedBox()
-                    ],
+    return FlipInY(
+      duration: Duration(milliseconds: 1500),
+      animate: true,
+      controller: (controller) => _controller = controller,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GestureDetector(
+          onDoubleTap: () {
+            //SE ACTUALIZA EL ESTADO DEL PARQUEADERO
+            widget.parking.disponible = widget.parking.disponible == 0 ? 1 : 0;
+            _controller.reset();
+            _controller.forward();
+            parkingProvider.updateParkingState(widget.parking);
+          },
+          onLongPress: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => VisitaPage(parking: widget.parking))),
+          child: Container(
+            width: 140,
+            height: 180,
+            child: Card(
+              color: intToBool(widget.parking.disponible)
+                  ? Colors.green[300]
+                  : Colors.red[400],
+              shadowColor: intToBool(widget.parking.disponible)
+                  ? Colors.green[300]
+                  : Colors.red[400],
+              elevation: 15,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SizedBox(
+                    height: 10,
                   ),
-                )
-              ],
+                  Text(
+                    widget.parking.apto,
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    widget.parking.numero,
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    widget.parking.placa,
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Text(
+                    widget.parking.placamoto,
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Row(
+                      children: [
+                        intToBool(widget.parking.vehiculo)
+                            ? Icon(Icons.directions_car_outlined)
+                            : SizedBox(),
+                        intToBool(widget.parking.moto)
+                            ? Icon(Icons.motorcycle)
+                            : SizedBox()
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
