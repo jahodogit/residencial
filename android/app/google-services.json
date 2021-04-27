@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "410531306044",
+    "project_id": "fsd-briefcase",
+    "storage_bucket": "fsd-briefcase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:410531306044:android:36e972f157f855fbc6c139",
+        "android_client_info": {
+          "package_name": "com.example.residencial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "410531306044-j77bhivqacqmj80ledaqkc2p7j5judvr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWBuQuwNja1Ujt7TiKLxCBNYbGZ9mq8m4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "410531306044-j77bhivqacqmj80ledaqkc2p7j5judvr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

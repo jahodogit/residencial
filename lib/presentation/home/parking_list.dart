@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:residencial/presentation/providers/parking_provider.dart';
@@ -12,14 +11,17 @@ class ParkingList extends StatelessWidget {
     ParkingProvider parkingProvider = Provider.of<ParkingProvider>(context);
 
     return Container(
-      child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-          ),
-          itemCount: parkingProvider.lots.length,
-          itemBuilder: (BuildContext context, index) {
-            return ParkingLot(parking: parkingProvider.lots[index]);
-          }),
+      child: Scrollbar(
+        showTrackOnHover: true,
+        child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+            ),
+            itemCount: parkingProvider.lots.length,
+            itemBuilder: (BuildContext context, index) {
+              return ParkingLot(parking: parkingProvider.lots[index]);
+            }),
+      ),
     );
   }
 }
