@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
     ParkingProvider parkingProvider = Provider.of<ParkingProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Parqueaderos"),
+        title: Text("Parking lots"),
         actions: [
           IconButton(
               icon: Icon(Icons.refresh_rounded),

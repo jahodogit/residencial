@@ -11,7 +11,7 @@ class ListaVisitasPage extends StatelessWidget {
     ParkingProvider parkingProvider = Provider.of<ParkingProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Visitantes"),
+        title: Text("Visitors"),
         actions: [
           IconButton(
               icon: Icon(Icons.flash_on),
@@ -99,7 +99,7 @@ class ListaVisitasPage extends StatelessWidget {
                         );
                       })
                   : Center(
-                      child: Text("No se encontraron datos"),
+                      child: Text("Not data found"),
                     ),
             ),
           ],
