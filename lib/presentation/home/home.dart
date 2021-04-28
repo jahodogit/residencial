@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:residencial/presentation/home/parking_list.dart';
 
 import 'package:residencial/presentation/providers/parking_provider.dart';
-import 'package:residencial/presentation/widgets/progress_indicator.dart';
+
 import 'package:residencial/styles.dart';
 
 class HomePage extends StatelessWidget {
@@ -43,11 +43,15 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed("/visitas");
-            },
+            onPressed: () => Navigator.of(context).pushNamed("/visitas"),
             child: Icon(Icons.person),
+            heroTag: "visitor_button",
           ),
+          FloatingActionButton(
+            onPressed: () => Navigator.of(context).pushNamed("/detector"),
+            child: Icon(Icons.camera_alt_outlined),
+            heroTag: "detector_button",
+          )
         ],
       ),
     );

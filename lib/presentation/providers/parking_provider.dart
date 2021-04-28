@@ -8,6 +8,8 @@ import 'package:residencial/domain/usecase/get_visitas.dart';
 import 'package:residencial/domain/usecase/initialdata.dart';
 import 'package:residencial/domain/usecase/put_visita.dart';
 import 'package:residencial/domain/usecase/sync_visita.dart';
+import 'package:residencial/domain/usecase/take_photo.dart';
+import 'package:residencial/domain/usecase/text_detect.dart';
 import 'package:residencial/domain/usecase/update_parking_state.dart';
 import 'package:residencial/domain/usecase/update_salida_visita.dart';
 
@@ -20,6 +22,7 @@ class ParkingProvider extends ChangeNotifier {
   List<Parking> dummyLots = [];
   List<Visita> visitas = [];
   List<Visita> dummyVisitas = [];
+  String detectedText = "";
 
   GetInitialDataUseCase getInitialDataUseCase;
   PutVisitaUseCase putVisitaUseCase;
@@ -28,6 +31,8 @@ class ParkingProvider extends ChangeNotifier {
   GetParkingUseCase getParkingUseCase;
   UpdateSalidaVisitaUseCase updateSalidaVisitaUseCase;
   SyncVisitaUseCase syncVisitaUseCase;
+
+  TextDetectUseCase textDetectUseCase;
 
   ParkingProvider() {
     getParkingInitialData();
@@ -113,5 +118,11 @@ class ParkingProvider extends ChangeNotifier {
   syncVisita() async {
     syncVisitaUseCase = SyncVisitaUseCase();
     await syncVisitaUseCase();
+  }
+
+  detectLicencePlate() async {
+    textDetectUseCase = TextDetectUseCase();
+    detectedText = await textDetectUseCase();
+    notifyListeners();
   }
 }

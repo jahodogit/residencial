@@ -1,4 +1,3 @@
-import 'package:residencial/domain/models/visita.dart';
 import 'package:residencial/repository/local_repository.dart';
 import 'package:residencial/repository/network_repository.dart';
 

@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:residencial/domain/exceptions/api_exception.dart';
-import 'package:residencial/domain/exceptions/response_cast.dart';
+
 import 'dart:convert' as convert;
 
 import 'package:residencial/domain/models/parking.dart';

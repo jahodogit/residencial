@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:residencial/domain/models/parking.dart';
 import 'package:residencial/presentation/providers/parking_provider.dart';
-import 'package:residencial/presentation/visita/visita.dart';
+import 'package:residencial/presentation/visitor/visita.dart';
 
 import '../../settings.dart';
 
@@ -28,7 +28,7 @@ class _ParkingLotState extends State<ParkingLot> {
         padding: const EdgeInsets.all(8.0),
         child: GestureDetector(
           onDoubleTap: () {
-            //SE ACTUALIZA EL ESTADO DEL PARQUEADERO
+            //update parking state
             widget.parking.disponible = widget.parking.disponible == 0 ? 1 : 0;
             _controller.reset();
             _controller.forward();

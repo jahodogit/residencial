@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:hive/hive.dart';
@@ -10,6 +11,8 @@ import 'package:residencial/presentation/providers/parking_provider.dart';
 import 'package:residencial/routes.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
