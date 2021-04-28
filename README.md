@@ -8,4 +8,5 @@ Permite el control de acceso a los parqueaderos identificando el propietario y l
 -  Registro de visitantes
 -  Doble click para registrar salida de visitante
 -  Almacenamiento de datos local
+-  Firebase ML
 
