@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:residencial/domain/models/parking.dart';
 import 'package:residencial/presentation/providers/parking_provider.dart';
-import 'package:residencial/presentation/visitor/visita.dart';
+import 'package:residencial/presentation/visitor/visit.dart';
 
 import '../../settings.dart';
 
-class ParkingLot extends StatefulWidget {
+class ParkingLotPage extends StatefulWidget {
   Parking parking;
-  ParkingLot({this.parking});
+  ParkingLotPage({this.parking});
 
   @override
-  _ParkingLotState createState() => _ParkingLotState();
+  _ParkingLotPageState createState() => _ParkingLotPageState();
 }
 
-class _ParkingLotState extends State<ParkingLot> {
+class _ParkingLotPageState extends State<ParkingLotPage> {
   AnimationController _controller;
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class _ParkingLotState extends State<ParkingLot> {
           onLongPress: () => Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => VisitaPage(parking: widget.parking))),
+                  builder: (context) => VisitPage(parking: widget.parking))),
           child: Container(
             width: 140,
             height: 180,

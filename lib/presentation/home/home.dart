@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
             ),
             Expanded(
                 child: parkingProvider.lots.isNotEmpty
-                    ? ParkingList()
+                    ? ParkingListPage()
                     : Center(
                         child: CircularProgressIndicator(),
                       ))
@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
-            onPressed: () => Navigator.of(context).pushNamed("/visitas"),
+            onPressed: () => Navigator.of(context).pushNamed("/visitors"),
             child: Icon(Icons.person),
             heroTag: "visitor_button",
           ),

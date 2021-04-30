@@ -5,8 +5,8 @@ import 'package:residencial/domain/models/parking.dart';
 import 'package:residencial/domain/models/visita.dart';
 import 'package:residencial/presentation/providers/parking_provider.dart';
 
-class VisitaPage extends StatelessWidget {
-  VisitaPage({this.parking});
+class VisitPage extends StatelessWidget {
+  VisitPage({this.parking});
 
   Parking parking;
   Visita visita = Visita();
@@ -18,7 +18,7 @@ class VisitaPage extends StatelessWidget {
     ParkingProvider parkingProvider = Provider.of<ParkingProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ingreso visitante"),
+        title: Text("Visit entry"),
       ),
       body: Container(
         padding: EdgeInsets.all(20),
@@ -26,20 +26,20 @@ class VisitaPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             TextField(
-              decoration: InputDecoration(labelText: "CEDULA"),
+              decoration: InputDecoration(labelText: "IDENTIFICATION"),
               onChanged: (value) => visita.cedula = value,
             ),
             TextField(
-              decoration: InputDecoration(labelText: "NOMBRE COMPLETO"),
+              decoration: InputDecoration(labelText: "NAME"),
               onChanged: (value) => visita.nombre = value,
             ),
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              Text("FECHA DE ENTRADA"),
+              Text("ENTRY DATE"),
               Text(fecha),
             ]),
-            Text("Apartamento: ${parking.apto}"),
+            Text("APARTMENT: ${parking.apto}"),
             TextField(
-              decoration: InputDecoration(labelText: "PLACA"),
+              decoration: InputDecoration(labelText: "LICENSE PLATE"),
               onChanged: (value) => visita.placavehiculo = value,
             ),
             ElevatedButton(
@@ -49,7 +49,7 @@ class VisitaPage extends StatelessWidget {
                   parkingProvider.putVisita(visita);
                   Navigator.of(context).pop();
                 },
-                child: Text("GUARDAR"))
+                child: Text("SAVE"))
           ],
         ),
       ),

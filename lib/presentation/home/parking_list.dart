@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:residencial/presentation/providers/parking_provider.dart';
 import 'package:residencial/presentation/widgets/parking_lot.dart';
 
-class ParkingList extends StatelessWidget {
-  const ParkingList({Key key}) : super(key: key);
+class ParkingListPage extends StatelessWidget {
+  const ParkingListPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class ParkingList extends StatelessWidget {
             ),
             itemCount: parkingProvider.lots.length,
             itemBuilder: (BuildContext context, index) {
-              return ParkingLot(parking: parkingProvider.lots[index]);
+              return ParkingLotPage(parking: parkingProvider.lots[index]);
             }),
       ),
     );

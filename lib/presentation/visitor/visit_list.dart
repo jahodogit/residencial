@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:residencial/presentation/providers/parking_provider.dart';
 import 'package:residencial/styles.dart';
 
-class ListaVisitasPage extends StatelessWidget {
-  const ListaVisitasPage({Key key}) : super(key: key);
+class VisitListPage extends StatelessWidget {
+  const VisitListPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
