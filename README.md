@@ -1,12 +1,12 @@
-# Control de parqueaderos y visitantes
+# Visitors and parking lots controller
 
-Permite el control de acceso a los parqueaderos identificando el propietario y los vehiculos autorizados en el mismo.  Es posible registrar los datos basicos de los visitantes de cada apartamento con fecha/hora de entrada y salida.
+This app allow access parking control identify lot owner and authorized cars to enter the building.  You can register basic information about visitor for each apartment/office with i/o datetime.
 
 ## Features
--  Busqueda de vehiculos autorizados
--  Doble click para cambiar el estado del parquederos
--  Registro de visitantes
--  Doble click para registrar salida de visitante
--  Almacenamiento de datos local
+-  Find authorized cars 
+-  Double click to change parking lot state
+-  Visitor entry
+-  Doble click to change visitor state
+-  Local storage with hive
 -  Firebase ML
 
