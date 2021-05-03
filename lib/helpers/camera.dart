@@ -14,8 +14,9 @@ class Camera {
 
     imagen = File(pickedFile.path);
     var directory = await getApplicationDocumentsDirectory();
-    String nombreRandom = Random().nextInt(5000).toString();
-    path = "${directory.path}/$nombreRandom.jpg";
+    //Generate temporal image name
+    String randomName = Random().nextInt(5000).toString();
+    path = "${directory.path}/$randomName.jpg";
     imagen.copy(path);
   }
 }

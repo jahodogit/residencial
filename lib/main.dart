@@ -7,8 +7,12 @@ import 'package:provider/provider.dart';
 import 'package:residencial/domain/models/parking.dart';
 import 'package:residencial/domain/models/visita.dart';
 import 'package:residencial/presentation/home/home.dart';
+
+import 'package:residencial/presentation/login/login.dart';
+import 'package:residencial/presentation/providers/auth_provider.dart';
 import 'package:residencial/presentation/providers/parking_provider.dart';
 import 'package:residencial/routes.dart';
+import 'package:residencial/splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +34,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ParkingProvider()),
+        ChangeNotifierProvider(create: (_) => AuthProvider()..init())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -41,23 +46,17 @@ class MyApp extends StatelessWidget {
         home: FutureBuilder(
           future: _initHive(context),
           builder: (context, snapshot) {
+            AuthProvider authProvider = Provider.of<AuthProvider>(context);
             if (snapshot.connectionState == ConnectionState.done) {
               if (snapshot.error != null) {
                 return Scaffold(
                   body: Center(child: Text(snapshot.error)),
                 );
               } else {
-                return HomePage();
+                return authProvider.isLogedIn ? HomePage() : LoginPage();
               }
             } else {
-              return Scaffold(
-                body: Center(
-                  child: Text(
-                    "powered by FSD - FullStackDev",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              );
+              return SplashPage();
             }
           },
         ),

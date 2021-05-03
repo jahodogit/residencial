@@ -9,4 +9,6 @@ This app allow access parking control identify lot owner and authorized cars to 
 -  Doble click to change visitor state
 -  Local storage with hive
 -  Firebase ML
+-  Firebase email auth
+-  Use residencial@fsd.com / residencial  to SigIn
 
