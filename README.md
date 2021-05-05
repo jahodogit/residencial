@@ -12,3 +12,9 @@ This app allow access parking control identify lot owner and authorized cars to 
 -  Firebase email auth
 -  Use residencial@fsd.com / residencial  to SigIn
 
+## Web Support
+
+Some libraries dont have web support yet
+
+- path_provider
+- firebase_ml_vision
