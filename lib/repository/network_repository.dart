@@ -1,7 +1,7 @@
 import 'dart:io';
-
+import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
-import 'package:residencial/domain/exceptions/api_exception.dart';
+import 'package:residencial/core/exceptions/exceptions.dart';
 
 import 'dart:convert' as convert;
 
@@ -12,13 +12,8 @@ import 'package:residencial/settings.dart';
 class NetworkRepository {
   Future<List<Parking>> getAllParking() async {
     var url = Uri.parse("$urlBase/residencial/api/parking/");
-    var response;
 
-    try {
-      response = await http.get(url);
-    } on SocketException {
-      throw FetchDataException("Sin conexion a internet");
-    }
+    var response = await http.get(url);
 
     Iterable bodyJson = convert.json.decode(response.body)["items"];
 
@@ -26,6 +21,8 @@ class NetworkRepository {
       return bodyJson
           .map((itemRecibido) => Parking.fromJson(itemRecibido))
           .toList();
+    } else {
+      throw ServerException();
     }
   }
 
@@ -38,9 +35,7 @@ class NetworkRepository {
             'Content-Type': 'application/json; charset=UTF-8',
           },
           body: convert.jsonEncode(visita));
-    } on SocketException {
-      throw FetchDataException("Sin conexion a internet");
-    }
+    } on SocketException {}
 
     if (response.statusCode == 200) {
       return true;

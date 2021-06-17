@@ -4,8 +4,6 @@ import 'package:residencial/presentation/providers/parking_provider.dart';
 import 'package:residencial/styles.dart';
 
 class VisitListPage extends StatelessWidget {
-  const VisitListPage({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     ParkingProvider parkingProvider = Provider.of<ParkingProvider>(context);
@@ -51,13 +49,13 @@ class VisitListPage extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Text(
-                                        item.cedula,
+                                        item.cedula.toString(),
                                         style: TextStyle(
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        item.nombre,
+                                        item.nombre.toString(),
                                         style: TextStyle(fontSize: 20),
                                       ),
                                       Text(
@@ -69,7 +67,7 @@ class VisitListPage extends StatelessWidget {
                                         style: TextStyle(fontSize: 15),
                                       ),
                                       Text(
-                                        "Apto: ${item.lot.apto}",
+                                        "Apto: ${item.lot?.apto}",
                                         style: TextStyle(fontSize: 20),
                                       ),
                                       Text(

@@ -7,7 +7,7 @@ import 'package:residencial/presentation/providers/parking_provider.dart';
 import 'package:residencial/styles.dart';
 
 class HomePage extends StatelessWidget {
-  String placa;
+  late String placa;
 
   @override
   Widget build(BuildContext context) {

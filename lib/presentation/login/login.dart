@@ -5,8 +5,8 @@ import 'package:residencial/presentation/providers/auth_provider.dart';
 import '../../styles.dart';
 
 class LoginPage extends StatelessWidget {
-  String email;
-  String pass;
+  late String email;
+  late String pass;
 
   @override
   Widget build(BuildContext context) {

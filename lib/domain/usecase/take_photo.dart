@@ -1,7 +1,7 @@
 import 'package:residencial/helpers/camera.dart';
 
 class TakePhotoUseCase {
-  Camera _camera;
+  late Camera _camera;
   Future<String> call() async {
     _camera = Camera();
     await _camera.getImage();

@@ -8,15 +8,15 @@ import 'package:residencial/presentation/visitor/visit.dart';
 import '../../settings.dart';
 
 class ParkingLotPage extends StatefulWidget {
-  Parking parking;
-  ParkingLotPage({this.parking});
+  late Parking parking;
+  ParkingLotPage({required this.parking});
 
   @override
   _ParkingLotPageState createState() => _ParkingLotPageState();
 }
 
 class _ParkingLotPageState extends State<ParkingLotPage> {
-  AnimationController _controller;
+  late AnimationController _controller;
   @override
   Widget build(BuildContext context) {
     ParkingProvider parkingProvider = Provider.of<ParkingProvider>(context);

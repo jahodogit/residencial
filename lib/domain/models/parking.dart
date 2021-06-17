@@ -21,14 +21,14 @@ class Parking extends HiveObject {
   final int id;
 
   Parking(
-      {this.id,
-      this.numero,
-      this.apto,
-      this.disponible,
-      this.placa,
-      this.moto,
-      this.vehiculo,
-      this.placamoto});
+      {required this.id,
+      required this.numero,
+      required this.apto,
+      required this.disponible,
+      required this.placa,
+      required this.moto,
+      required this.vehiculo,
+      required this.placamoto});
 
   factory Parking.fromJson(Map<String, dynamic> json) {
     return Parking(

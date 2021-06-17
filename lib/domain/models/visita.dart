@@ -6,19 +6,19 @@ part 'visita.g.dart';
 @HiveType(typeId: 2)
 class Visita extends HiveObject {
   @HiveField(0)
-  String cedula;
+  String? cedula;
   @HiveField(1)
-  String nombre;
+  String? nombre;
   @HiveField(2)
-  String entrada;
+  String? entrada;
   @HiveField(3)
   String salida;
   @HiveField(4)
-  Parking lot;
+  Parking? lot;
   @HiveField(5)
-  String placavehiculo;
+  String? placavehiculo;
   @HiveField(6)
-  int sincronizado;
+  int? sincronizado;
 
   Visita(
       {this.cedula,

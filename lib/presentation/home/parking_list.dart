@@ -4,8 +4,6 @@ import 'package:residencial/presentation/providers/parking_provider.dart';
 import 'package:residencial/presentation/widgets/parking_lot.dart';
 
 class ParkingListPage extends StatelessWidget {
-  const ParkingListPage({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     ParkingProvider parkingProvider = Provider.of<ParkingProvider>(context);

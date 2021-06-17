@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.done) {
               if (snapshot.error != null) {
                 return Scaffold(
-                  body: Center(child: Text(snapshot.error)),
+                  body: Center(child: Text(snapshot.error.toString())),
                 );
               } else {
                 return authProvider.isLogedIn ? HomePage() : LoginPage();

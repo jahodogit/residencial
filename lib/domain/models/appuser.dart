@@ -4,5 +4,9 @@ class AppUser {
   final String name;
   final String lastSignin;
 
-  AppUser({this.email, this.state, this.name, this.lastSignin});
+  AppUser(
+      {required this.email,
+      required this.state,
+      required this.name,
+      required this.lastSignin});
 }

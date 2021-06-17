@@ -8,8 +8,8 @@ import 'package:residencial/presentation/providers/parking_provider.dart';
 class VisitPage extends StatelessWidget {
   VisitPage({this.parking});
 
-  Parking parking;
-  Visita visita = Visita();
+  late Parking? parking;
+  late Visita visita = Visita();
   String fecha =
       formatDate(DateTime.now(), [dd, '/', mm, '/', yy, ' ', HH, ':', nn]);
 
@@ -37,7 +37,7 @@ class VisitPage extends StatelessWidget {
               Text("ENTRY DATE"),
               Text(fecha),
             ]),
-            Text("APARTMENT: ${parking.apto}"),
+            Text("APARTMENT: ${parking?.apto}"),
             TextField(
               decoration: InputDecoration(labelText: "LICENSE PLATE"),
               onChanged: (value) => visita.placavehiculo = value,

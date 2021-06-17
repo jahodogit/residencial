@@ -1,22 +1,28 @@
+import 'package:dartz/dartz.dart';
 import 'package:residencial/domain/models/parking.dart';
 import 'package:residencial/repository/local_repository.dart';
 import 'package:residencial/repository/network_repository.dart';
 
 class GetInitialDataUseCase {
-  LocalRepository _localRepository;
-  NetworkRepository _networkRepository;
+  late LocalRepository _localRepository;
+  late NetworkRepository _networkRepository;
 
-  Future<List<Parking>> call() async {
+  Future<Either<Exception, List<Parking>>> call() async {
     _localRepository = LocalRepository();
     _networkRepository = NetworkRepository();
 
     await _localRepository.openBox();
 
     if (_localRepository.ready()) {
-      var lots = await _networkRepository.getAllParking();
-      await _localRepository.putDataParking(lots);
+      try {
+        var lots = await _networkRepository.getAllParking();
+        await _localRepository.putDataParking(lots);
+        return _localRepository.getAllParking();
+      } catch (e) {
+        return Left(Exception());
+      }
+    } else {
+      return Left(Exception());
     }
-
-    return _localRepository.getAllParking();
   }
 }
