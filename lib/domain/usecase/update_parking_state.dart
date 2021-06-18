@@ -6,6 +6,6 @@ class UpdateParkingStateUseCase {
 
   Future<void> call(Parking parking) async {
     _localRepository = LocalRepository();
-    await _localRepository.updateEstadoParking(parking);
+    await _localRepository.updateParkingState(parking);
   }
 }

@@ -45,6 +45,7 @@ class ParkingProvider extends ChangeNotifier {
   }
 
   getParkingInitialData() async {
+    getInitialDataUseCase = GetInitialDataUseCase();
     exceptionOrLots = await getInitialDataUseCase();
     exceptionOrLots.fold(
         (exception) => Exception(), (lotsfromapi) => lots = lotsfromapi);
@@ -60,12 +61,14 @@ class ParkingProvider extends ChangeNotifier {
   }
 
   getVisitas() {
+    getVisitasUseCase = GetVisitasUseCase();
     visitas = getVisitasUseCase();
     dummyVisitas = getVisitasUseCase();
     notifyListeners();
   }
 
   updateParkingState(Parking parking) async {
+    updateParkingStateUseCase = UpdateParkingStateUseCase();
     await updateParkingStateUseCase(parking);
     notifyListeners();
   }
@@ -80,6 +83,7 @@ class ParkingProvider extends ChangeNotifier {
   }
 
   resetParkingSearch() {
+    getParkingUseCase = GetParkingUseCase();
     exceptionOrLots = getParkingUseCase();
     exceptionOrLots.fold((exception) => Exception(), (lotsfromlocal) {
       lots = lotsfromlocal;
@@ -98,17 +102,20 @@ class ParkingProvider extends ChangeNotifier {
   }
 
   resetVisitaSearch() {
+    getVisitasUseCase = GetVisitasUseCase();
     visitas = getVisitasUseCase();
     dummyVisitas = getVisitasUseCase();
     notifyListeners();
   }
 
   updateSalidaVisita(Visita visita) async {
+    updateSalidaVisitaUseCase = UpdateSalidaVisitaUseCase();
     await updateSalidaVisitaUseCase(visita);
     notifyListeners();
   }
 
   syncVisita() async {
+    syncVisitaUseCase = SyncVisitaUseCase();
     await syncVisitaUseCase();
   }
 

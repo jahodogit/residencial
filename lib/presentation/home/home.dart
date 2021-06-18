@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
           IconButton(
               icon: Icon(Icons.refresh_rounded),
               onPressed: () => parkingProvider.resetParkingSearch()),
-          Image.asset("images/naranja.png")
+          Image.asset("images/fsd-iconx50.png")
         ],
       ),
       body: Padding(

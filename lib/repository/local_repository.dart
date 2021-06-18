@@ -38,7 +38,7 @@ class LocalRepository {
 
   List<Visita> getVisitas() => visitasBox.values.toList().cast();
 
-  Future<void> updateEstadoParking(Parking parking) async {
+  Future<void> updateParkingState(Parking parking) async {
     Parking element = parkingBox.values
         .where((element) => element.numero == parking.numero)
         .first;
